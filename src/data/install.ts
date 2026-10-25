@@ -56,7 +56,6 @@ export const systems: System[] = [
 		id: 'linux',
 		label: 'Linux',
 		paletteKey: 'Ctrl+Shift+P',
-		// TODO(G): Linux install notes.
-		csoundNote: '[LINUX INSTALL NOTES, TO CONFIRM]',
+		// TODO(G): Linux install notes. Set csoundNote to show the note box.
 	},
 ];

@@ -29,3 +29,29 @@ if (control) {
 		});
 	}
 }
+
+// Windows ships as x64 and ARM64 packages. The page lists x64 first, in
+// green, because it is the safe guess: it also installs on an ARM64 PC,
+// the reverse does not. Only Chromium browsers (Chrome, Edge, Brave) can
+// say which chip they run on; a native ARM64 browser's user agent string
+// still claims "x64". When they report ARM64 that download goes first and
+// takes the green. Everyone else keeps the x64 default and the hint.
+const archControl = document.querySelector('[data-arch-control]');
+const agent = navigator.userAgentData;
+
+if (archControl && agent && typeof agent.getHighEntropyValues === 'function') {
+	agent
+		.getHighEntropyValues(['architecture'])
+		.then((values) => {
+			if (values.architecture !== 'arm') return;
+			document.documentElement.dataset.arch = 'arm64';
+			for (const button of archControl.querySelectorAll('[data-arch] .btn')) {
+				const preferred = button.closest('[data-arch]').dataset.arch === 'arm64';
+				button.classList.toggle('btn-primary', preferred);
+				button.classList.toggle('btn-quiet', !preferred);
+			}
+			const archHint = archControl.querySelector('[data-arch-hint]');
+			if (archHint) archHint.textContent = 'Your browser reports an ARM64 PC.';
+		})
+		.catch(() => {});
+}

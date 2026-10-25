@@ -18,10 +18,10 @@ import { formatDate, formatSize, getRelease } from '../lib/release';
 const release = await getRelease();
 const releaseDate = formatDate(release.date);
 const viaMarketplace = install.marketplaceUrl !== '';
-// The Windows section shows a second download for Windows on ARM devices,
-// but only when the current release actually ships the file. Older
-// releases and fallback builds have no ARM package, so nothing shows.
-const armAsset = release.assets['windows-arm'] ?? null;
+// Windows gets a second download for ARM64 PCs, but only when the current
+// release actually ships the file. Older releases and fallback builds have
+// no ARM64 package, so the section reads as it always did.
+const armAsset = release.source === 'github' ? release.assets['windows-arm'] : null;
 ---
 
 <SiteLayout
@@ -89,6 +89,12 @@ const armAsset = release.assets['windows-arm'] ?? null;
                     <p>
                       Cabbage 3 runs on Csound 7. Download the {system.label} installer from the Csound releases page
                       and run it.
+                      {system.id === 'windows' && armAsset && (
+                        <>
+                          {' '}
+                          On an ARM64 PC choose the ARM64 installer: Csound and the extension in step 2 must match.
+                        </>
+                      )}
                     </p>
                     <Button href={install.csoundReleasesUrl} variant="quiet">
                       Get Csound 7
@@ -132,22 +138,41 @@ const armAsset = release.assets['windows-arm'] ?? null;
                           The editor tools, the live preview and the Cabbage server, in one file. Download it, then
                           install it from inside VS Code.
                         </p>
-                        <div class="install-download">
-                          <Button href={asset?.url ?? site.releasesUrl}>Download for {system.label}</Button>
-                          {asset && (
-                            <span class="install-download__file">
-                              {asset.name}, {formatSize(asset.size)}
-                            </span>
-                          )}
-                        </div>
-                        {system.id === 'windows' && armAsset && (
+                        {system.id === 'windows' && armAsset ? (
+                          /* Two Windows packages. x64 is the safe default: it also installs on an
+                             ARM64 PC, the reverse does not. When the browser reports ARM64 (Chromium
+                             only, see src/scripts/install.js) the ARM64 download goes first and takes
+                             the green. */
+                          <div class="install-downloads" data-arch-control>
+                            <div class="install-download" data-arch="x64">
+                              <Button href={asset?.url ?? site.releasesUrl}>Download for Windows (x64)</Button>
+                              {asset && (
+                                <span class="install-download__file">
+                                  {asset.name}, {formatSize(asset.size)}
+                                </span>
+                              )}
+                            </div>
+                            <div class="install-download" data-arch="arm64">
+                              <Button href={armAsset.url} variant="quiet">
+                                Download for Windows (ARM64)
+                              </Button>
+                              <span class="install-download__file">
+                                {armAsset.name}, {formatSize(armAsset.size)}
+                              </span>
+                            </div>
+                            <p class="install-downloads__hint" data-arch-hint>
+                              Most PCs are x64. ARM64 is for Snapdragon laptops and Copilot+ PCs: check Settings,
+                              System, About, under System type.
+                            </p>
+                          </div>
+                        ) : (
                           <div class="install-download">
-                            <Button href={armAsset.url} variant="quiet">
-                              Download for Windows (ARM64)
-                            </Button>
-                            <span class="install-download__file">
-                              {armAsset.name}, {formatSize(armAsset.size)}
-                            </span>
+                            <Button href={asset?.url ?? site.releasesUrl}>Download for {system.label}</Button>
+                            {asset && (
+                              <span class="install-download__file">
+                                {asset.name}, {formatSize(asset.size)}
+                              </span>
+                            )}
                           </div>
                         )}
                         <p>
@@ -293,7 +318,8 @@ const armAsset = release.assets['windows-arm'] ?? null;
   .install-steps :global(.cb-step__body > .btn) {
     margin-top: 16px;
   }
-  .install-steps :global(.cb-step__body > .install-download + p) {
+  .install-steps :global(.cb-step__body > .install-download + p),
+  .install-steps :global(.cb-step__body > .install-downloads + p) {
     margin-top: 16px;
   }
 
@@ -319,6 +345,24 @@ const armAsset = release.assets['windows-arm'] ?? null;
     font-size: var(--cb-text-code);
     color: var(--cb-muted);
     overflow-wrap: anywhere;
+  }
+
+  /* Two Windows downloads, x64 first unless the browser says ARM64. */
+  .install-downloads {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .install-downloads .install-download {
+    margin-top: 0;
+  }
+  .install-downloads__hint {
+    font-size: var(--cb-text-small);
+    color: var(--cb-muted);
+  }
+  :global(html[data-arch='arm64']) .install-download[data-arch='arm64'] {
+    order: -1;
   }
 
   .install-vsix {
