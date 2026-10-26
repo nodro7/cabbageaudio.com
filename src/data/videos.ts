@@ -33,6 +33,7 @@ export const videos: Video[] = [
 	{ id: '2fD5TbgqH2Q', lesson: 8, title: 'Building a simple synth plugin', shortTitle: 'Building a simple synth plugin' },
 	{ id: 'lKrG_--aVGk', lesson: 9, title: 'Exporting instruments in Cabbage 3', shortTitle: 'Exporting instruments' },
 	{ id: 'ML7iq1PYhU8', lesson: 10, title: 'Custom UIs with Cabbage 3', shortTitle: 'Custom UIs' },
+	{ id: 'v=gLdVu9PsK_k', lesson: 11, title: 'Custom Widgets in Cabbage 3', shortTitle: 'Custom Widgets' }
 ];
 
 /** "Overview" or "Lesson 8". */
