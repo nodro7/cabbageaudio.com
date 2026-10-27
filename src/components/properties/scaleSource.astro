@@ -1,8 +1,15 @@
 ---
-import { Code } from '@astrojs/starlight/components';
+import { Aside, Code } from '@astrojs/starlight/components';
 const description = `<p>Controls where the plugin UI gets its high DPI scale factor from. Use <code>"host"</code> (the default) to use the scale factor sent by the DAW, falling back to the operating system DPI if the DAW does not send one. Use <code>"os"</code> to always use the operating system DPI and ignore whatever the DAW sends.</p>`;
 ---
 <div class="property-section">
   <Code code={`"scaleSource": "host"`} lang="json" />
   <Fragment set:html={description} />
+  <Aside type="note" title="Windows only">
+    <p>
+      This setting currently only has an effect on Windows. On macOS the host
+      window is measured in logical pixels and Retina scaling is handled by
+      the operating system, so there is nothing to configure.
+    </p>
+  </Aside>
 </div>
