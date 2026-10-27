@@ -1,0 +1,8 @@
+---
+import { Code } from '@astrojs/starlight/components';
+const description = `<p>Controls where the plugin UI gets its high DPI scale factor from. Use <code>"host"</code> (the default) to use the scale factor sent by the DAW, falling back to the operating system DPI if the DAW does not send one. Use <code>"os"</code> to always use the operating system DPI and ignore whatever the DAW sends.</p>`;
+---
+<div class="property-section">
+  <Code code={`"scaleSource": "host"`} lang="json" />
+  <Fragment set:html={description} />
+</div>

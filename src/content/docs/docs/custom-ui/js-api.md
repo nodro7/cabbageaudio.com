@@ -264,6 +264,7 @@ Request a resize of the plugin GUI window (plugin mode only).
 - Only works in plugin mode (CLAP/VST3/AUv2)
 - Host may accept or reject the request
 - Backend sends a `resizeResponse` message indicating acceptance and final dimensions
+- Sizes are given in CSS pixels, the same units used by the rest of the UI. They are converted to physical pixels for the host automatically, so no DPI scaling is needed here.
 
 
 #### `Cabbage.sendCustomCommand(command, vscode, data)`
