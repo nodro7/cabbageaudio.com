@@ -23,6 +23,8 @@ The importer converts many familiar widget types and identifiers to Cabbage 3's 
 
 - Widget `chnget` calls may become `cabbageGetValue`; widget `chnset` calls may become `cabbageSetValue`.
 - Some literal property updates on `identChannel` become `cabbageSet`.
+- Combo boxes and option buttons stay 0-based (Cabbage 3 native). The importer shifts the orchestra's index references down by one: `if combo==N` → `if combo==N-1`, `comboVar init N` → `comboVar init N-1`, and a manual `i(comboVar)-1` is dropped.
+- `soundfiler` becomes a `genTable`; its `tableNumber` (from `ftgen`) or `file` (from `diskin2`) is wired automatically, and the matching `chnset "file(%s)…", "ident"` becomes a `cabbageSet` refresh.
 - Simple `#define NAME ...` macros and `$NAME` references in the Cabbage section are expanded.
 - Plant blocks are flattened into individual widgets, with child positions offset by the plant's position.
 
@@ -40,7 +42,7 @@ Many identifiers map to Cabbage 3 properties, but unsupported or deprecated iden
 
 Only channel names recognized as widget channels are rewritten; internal Csound channels are left alone. `chnget` is converted only for i-rate and k-rate variables. a-rate and string-rate (`S`) reads remain as `chnget`.
 
-The importer can convert only a limited set of literal `identChannel` property updates. Dynamic property strings, unsupported properties and dynamic channel names cannot be converted safely; the importer comments out these `chnset` calls and adds a warning. Search the converted orchestra for `Cabbage2→3 manual conversion needed` and implement those updates yourself. Cabbage 2 mouse-related reserved channels were removed; their old calls are left in place with warnings and need a Cabbage 3 alternative.
+The importer can convert only a limited set of literal `identChannel` property updates. Dynamic property strings, unsupported properties and dynamic channel names cannot be converted safely; the importer comments out these `chnset` calls and adds a warning. Search the converted orchestra for `Cabbage2→3 manual conversion needed` and implement those updates yourself. Cabbage 2 mouse-related reserved channels were removed: `MOUSE_X`/`MOUSE_Y`/`MOUSE_DOWN_LEFT` are auto-converted to a transparent image overlay when the form has no interactive widgets; otherwise, and for `MOUSE_DOWN_RIGHT`/`MOUSE_DOWN_MIDDLE` (which have no runtime handler), their old calls are left in place with warnings and need a Cabbage 3 alternative.
 
 ### Check channels and repeated widgets
 
@@ -70,11 +72,12 @@ These tables describe the importer's current behavior. They are a practical refe
 | --- | --- | --- |
 | `rslider`, `hslider`, `vslider`, `nslider` | `rotarySlider`, `horizontalSlider`, `verticalSlider`, `numberSlider` | Renamed |
 | `combobox`, `checkbox`, `groupbox`, `gentable` | `comboBox`, `checkBox`, `groupBox`, `genTable` | Renamed |
+| `soundfiler` | `genTable` | Waveform viewer; `identChannel` becomes `id`, `selectableRegions` is enabled, and `tableNumber`/`file` is wired from the orchestra's `ftgen`/`diskin2` |
 | `filebutton`, `infobutton`, `optionbutton`, `texteditor`, `listbox`, `csoundoutput`, `xypad` | `fileButton`, `infoButton`, `optionButton`, `textEditor`, `listBox`, `csoundOutput`, `xyPad` | Renamed |
 | `hrange`, `vrange` | `horizontalRangeSlider`, `verticalRangeSlider` | Renamed |
 | `vmeter`, `hmeter` | `verticalSlider`, `horizontalSlider` | Approximation; Cabbage 3 has no stock meter widget |
 | `line` | `image` | Approximation; review its appearance |
-| `soundfiler`, `signaldisplay`, `eventsequencer`, `fftdisplay`, `encoder`, `textbox`, `light`, `screw`, `cvoutput`, `cvinput`, `oscserver`, `popupmenu`, `sourcebutton`, `path`, `presetbutton`, `loadbutton`, `directorylist`, `keyboarddisplay`, `stepper` | Kept under the original type name | Manual-review warning; not mapped to a stock widget |
+| `signaldisplay`, `eventsequencer`, `fftdisplay`, `encoder`, `textbox`, `light`, `screw`, `cvoutput`, `cvinput`, `oscserver`, `popupmenu`, `sourcebutton`, `path`, `presetbutton`, `loadbutton`, `directorylist`, `keyboarddisplay`, `stepper` | Kept under the original type name | Manual-review warning; not mapped to a stock widget |
 | `form`, `button`, `label`, `image`, `keyboard`, `table`, `tablex`, and other types without a rename above | Kept under the original type name | No type rename; unrecognized types may still need manual work |
 
 ### Common identifier mappings
@@ -86,7 +89,7 @@ These tables describe the importer's current behavior. They are a practical refe
 | `channel("name")` | `channels: [{ id: "name", event: "valueChanged" }]` | Multiple names create multiple channel entries |
 | `identChannel("name")` | `channels[0].id` | If `channel()` is also present, its first channel name takes precedence |
 | `range(...)`, `rangeX(...)`, `rangeY(...)` | `channels[].range` | `rangeY` targets the second channel; a missing increment is calculated |
-| `value(n)`, `defaultValue(n)` | `channels[0].range.defaultValue` | `min`, `max`, `increment`, `skew` also map under the first channel's `range` |
+| `value(n)`, `defaultValue(n)` | `channels[0].range.defaultValue` | `min`, `max`, `increment`, `skew` also map under the first channel's `range`; on `comboBox`/`optionButton` the 1-based `n` is shifted to `n-1` |
 | `channelType("string")` | `channels[0].type: "string"` | Other values become `"number"` |
 | `caption("...")`, `pluginId("...")` | `caption`, top-level `pluginId` | `pluginId` is moved out of the form widget |
 | `items("A","B")` | `items: ["A", "B"]` | `text("A","B")` also becomes `items` for combo boxes and list boxes |
@@ -115,7 +118,7 @@ The importer silently ignores the following identifiers because they are treated
 | GUI and layering | `guimode`, `guirefresh`, `autoupdate`, `opengl`, `movebehind`, `tofront`, `isparent`, `glshader`, `urlinfo` |
 | Slider and marker details | `trackercentre`, `trackerstart`, `trackerend`, `trackerinsideradius`, `trackeroutsideradius`, `markerstart`, `markerend`, `markerthickness`, `gapmarkers`, `sliderbounds`, `midctrl`, `toggle`, `zoom`, `popuptext` |
 | Keyboard details | `keyseparatorcolour`, `mouseoverkeycolour`, `mousedownkeyoutlinecolour`, `mouseoverkeyoutlinethickness`, `arrowcolour`, `keywidth`, `keywidthscale`, `blacknotelength`, `blacknotewidth`, `mouseoeverkeycolour` |
-| Meter, table and display details | `overlaycolour`, `metercolour`, `samplerange`, `scrubberposition`, `showscrubber`, `displaytype`, `signalvariable`, `tablenumbers`, `tablecolours`, `tablecolour:0`, `tablecolour:1` |
+| Meter, table and display details | `overlaycolour`, `metercolour`, `samplerange`, `scrubberposition`, `showscrubber`, `displaytype`, `signalvariable`, `tablecolours`, `tablecolour:0`, `tablecolour:1` |
 | List and text editing | `highlighteditemcolour`, `highlightedtextcolour`, `protecteditems`, `numberofclicks`, `caretcolour`, `doubleclicktogglesedit`, `textboxcolour`, `textboxoutlinecolour` |
 | Form, build and metadata | `titlebarcolour`, `titlebargradient`, `titlebarheight`, `bundle`, `import`, `opcodedir`, `opcode6dir64`, `sidechain`, `manufacturer`, `author`, `factoryfolder`, `userfolder`, `latency`, `macrostrings`, `macronames` |
 | Styling | `style` |
@@ -128,7 +131,8 @@ Names are matched case-insensitively. The importer also corrects the common miss
 | --- | --- | --- |
 | `kValue chnget "widgetChannel"` or `iValue chnget "widgetChannel"` | `kValue cabbageGetValue "widgetChannel"` or `iValue cabbageGetValue "widgetChannel"` | Only recognized widget channels and i-/k-rate reads are rewritten |
 | `chnset value, "widgetChannel"` | `cabbageSetValue "widgetChannel", value` | Only recognized widget channels are rewritten |
-| `chnset "visible(0)", "identChannel"` | `cabbageSet "widgetChannel", "visible", 0` | Only supported literal property strings are converted; the widget's value channel is used when present |
+| `chnset "visible(0)", "identChannel"` | `cabbageSet k(1), "widgetChannel", "visible", 0` | Only supported literal property strings are converted; the widget's value channel is used when present |
+| `if combo==N` / `comboVar init N` / `i(comboVar)-1` on a comboBox/optionButton channel | `if combo==N-1` / `comboVar init N-1` / `i(comboVar)` | Cabbage 3 combo boxes are 0-based; indices shift down by one |
 | Internal Csound channel calls | Remain `chnget` / `chnset` | Not considered widget channels |
 | Dynamic or unsupported property updates | Commented out with a manual-conversion warning | Search for `Cabbage2→3 manual conversion needed` in the output |
-| Removed mouse channels | Left in place with a warning | Replace with an appropriate Cabbage 3 widget event or other design |
+| Removed mouse channels | Auto-converted to a mouse-overlay image widget (when no interactive widgets), otherwise left in place with a warning | `MOUSE_X`/`MOUSE_Y`/`MOUSE_DOWN_LEFT` are supported; right/middle click have no handler |
