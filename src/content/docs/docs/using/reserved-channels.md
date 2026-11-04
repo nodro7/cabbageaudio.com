@@ -7,7 +7,7 @@ sidebar:
 
 Cabbage 3 will initialise a set of named Csound channels when it first loads. Some provide system-specific directory paths, while others convey environmental or system information, such as window dimensions or plugin status. These channels provide a cross-platform way to access common system directories or runtime data without hardcoding values. Cabbage 3 works with absolute file paths, so be sure to derive all file paths from known locations where appropriate.
 
-## Channels
+## CSD and Plugin Information
 
 ### `CSD_PATH`
 The directory path where the current CSD file is located. Useful for loading resources relative to your CSD file location.
@@ -17,6 +17,34 @@ Returns 1 if the instrument is running inside a DAW, otherwise returns 0.
 
 ### `IS_ARA_PLUGIN`
 Returns 1 if the instrument has support for ARA. 
+
+## Host Transport
+
+### `HOST_BPM`
+The host transport tempo in beats per minute.
+
+### `HOST_IS_PLAYING`
+Returns 1 while the host transport is playing, otherwise returns 0.
+
+### `HOST_IS_RECORDING`
+Returns 1 while the host transport is recording, otherwise returns 0.
+
+### `HOST_TIME_IN_SECONDS`
+The host transport position in seconds.
+
+### `HOST_TIME_IN_SAMPLES`
+The host transport position in samples, calculated from the position in seconds and the current sample rate.
+
+### `HOST_TIME_SIG_NUM`
+The numerator of the host transport time signature.
+
+### `HOST_TIME_SIG_DENOM`
+The denominator of the host transport time signature.
+
+### `HOST_PPQ_POS`
+The host transport position in quarter-note beats (PPQ position), reported at the start of the current bar.
+
+## User Directories
 
 ### `USER_HOME_DIRECTORY`
 The user's home directory. On Windows, this is typically `C:\Users\<username>`. On macOS and Linux, this is `/Users/<username>` or `/home/<username>` respectively.
@@ -39,6 +67,8 @@ The user's Pictures folder. On Windows, this is `C:\Users\<username>\Pictures`. 
 ### `USER_APPLICATION_DATA_DIRECTORY`
 The user's application data directory for storing application-specific data. On Windows, this is `C:\Users\<username>\AppData\Local`. On macOS, this is `/Users/<username>/Library/Application Support`. On Linux, this is `/home/<username>/.config`.
 
+## System Directories
+
 ### `COMMON_APPLICATION_DATA_DIRECTORY`
 The system-wide application data directory for shared application data. On Windows, this is `C:\ProgramData`. On macOS, this is `/Library/Application Support`. On Linux, this is `/opt`.
 
@@ -50,6 +80,8 @@ The Windows system directory. On Windows, this is `C:\Windows\System32`. Not app
 
 ### `GLOBAL_APPLICATIONS_DIRECTORY`
 The system-wide applications directory. On Windows, this is `C:\Program Files`. On macOS, this is `/Applications`. On Linux, this is `/usr`.
+
+## Window Dimensions
 
 ### `WINDOW_WIDTH`
 The width in pixels of the current Cabbage UI window. This reflects the window size available to the UI and can be used to scale or position widgets.
