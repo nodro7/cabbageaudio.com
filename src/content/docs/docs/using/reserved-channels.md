@@ -42,7 +42,7 @@ The numerator of the host transport time signature.
 The denominator of the host transport time signature.
 
 ### `HOST_PPQ_POS`
-The host transport position in pulses per quarter note (PPQ), reported at the start of the current bar.
+The host transport position in quarter-note beats (PPQ position), reported at the start of the current bar.
 
 ## User Directories
 
