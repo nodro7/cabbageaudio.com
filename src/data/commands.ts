@@ -52,9 +52,9 @@ export const commands: Command[] = [
 		link: { label: 'Commands and settings', href: '/docs/using/commands/' },
 	},
 	{
-		title: 'Update old-style Cabbage code to JSON',
-		description: 'Converts Cabbage 2 widget code to the JSON format that Cabbage 3 uses.',
-		link: { label: 'What is new in Cabbage 3', href: '/docs/whats-new/' },
+		title: 'Import Cabbage 2 Instrument',
+		description: 'Creates a Cabbage 3 copy of a Cabbage 2 instrument, with warnings for conversion work to review.',
+		link: { label: 'Importing Cabbage 2 Instruments', href: '/docs/using/importing-cabbage-2-instruments/' },
 	},
 ];
 

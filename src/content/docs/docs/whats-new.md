@@ -5,6 +5,8 @@ description: "The main changes from Cabbage 2 to Cabbage 3: Csound 7, the VS Cod
 
 Cabbage 3 represents a significant overhaul of the previous version, Cabbage 2. This transition involved tough decisions that could lead to some discomfort for existing users, as it diverges from familiar practices. Below are some of the notable changes:
 
+To bring an existing instrument across, use the [Cabbage 2 importer](/docs/using/importing-cabbage-2-instruments/) as a starting point and review its limitations.
+
 ## 1. Change to Csound 7
 - Cabbage 3 requires Csound 7 and cannot be run with Csound 6.
 
@@ -86,4 +88,3 @@ Although keeping mutable artifacts outside of the plugin bundle represents a dep
 - ARA (Audio Random Access) is now fully supported. This gives a plugin direct, offline access to a host’s audio material without having to process it in real time.
 
 - Widgets now support arbitrary numbers of channels.
-
