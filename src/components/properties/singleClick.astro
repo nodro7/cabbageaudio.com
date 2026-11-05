@@ -1,0 +1,8 @@
+---
+import { Code } from '@astrojs/starlight/components';
+const description = `<p>When true, selecting an item with a single click immediately sends its index (or text) to Csound. When false, the default, a single click only highlights the item and a double-click sends it.</p>`;
+---
+<div class="property-section">
+  <Code code={`"singleClick": false`} lang="json" />
+  <Fragment set:html={description} />
+</div>
