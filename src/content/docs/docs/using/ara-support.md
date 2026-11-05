@@ -2,7 +2,7 @@
 title: "ARA Support"
 description: "How to build ARA plugins with Cabbage 3 and read the host's audio sources, regions and selection from Csound."
 sidebar:
-  order: 10
+  order: 11
 ---
 
 **Audio Random Access (ARA)** is an extension to the standard audio plugin format that gives a plugin direct, offline access to a host's audio material—without having to process it in real time. **Cabbage 3** supports ARA through a consolidated opcode API that provides access to the host's audio tracks. 
