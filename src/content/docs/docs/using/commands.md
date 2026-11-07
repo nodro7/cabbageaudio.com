@@ -426,5 +426,5 @@ The Cabbage source folder and the Cabbage binary folder are set automatically by
 - **Opens the Csound 7 opcode reference page** (`cabbage.openOpcodeReference`)
   - Opens the Csound 7 opcode documentation in your browser
 
-- **Update old-style Cabbage code to JSON** (`cabbage.updateToCabbage3`)
-  - Converts old Cabbage syntax to the new JSON format
+- **Import Cabbage 2 Instrument** (`cabbage.importCabbage2Instrument`)
+  - Creates a Cabbage 3 copy of a Cabbage 2 instrument, with warnings for conversion work to review
