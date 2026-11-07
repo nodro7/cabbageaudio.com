@@ -1,13 +1,13 @@
 ---
 import { Code } from '@astrojs/starlight/components';
 const description = `<ul>
-<li>The form background color is controlled by <code>style.fill</code>.</li>
+<li>The form background color is controlled by <code>style.backgroundColor</code>.</li>
 <li>Opacity applies to the form’s background.</li>
 </ul>`;
 ---
 <div class="property-section">
   <Code code={`"style": {
-  "fill": "#004c6b",
+  "backgroundColor": "#004c6b",
   "opacity": 1
 },`} lang="json" />
   <Fragment set:html={description} />
