@@ -11,6 +11,7 @@ import Id from "../../../../components/properties/id.astro";
 import Items from "../../../../components/properties/items.astro";
 import Persistence from "../../../../components/properties/persistence.astro";
 import Populate from "../../../../components/properties/populate.astro";
+import SingleClick from "../../../../components/properties/singleClick.astro";
 import Visible from "../../../../components/properties/visible.astro";
 import ZIndex from "../../../../components/properties/zindex.astro";
 import StyleListBox from "../../../../components/properties/listbox.style.astro";
@@ -18,7 +19,7 @@ import WidgetExample from "../../../../components/docs/WidgetExample.astro";
 import ExampleCode from "../../../../components/docs/ExampleCode.astro";
 
 
-`listBox` creates a scrollable list of items which users can choose from. A single click highlights an item without sending anything to Csound. A double-click sends the index of the highlighted item to Csound on the widget's channel.
+`listBox` creates a scrollable list of items which users can choose from. By default a single click highlights an item without sending anything to Csound, and a double-click sends the index of the highlighted item to Csound on the widget's channel. Set `singleClick` to `true` to send the selection on a single click instead.
 
 <WidgetExample name="listBox" />
 
@@ -36,7 +37,7 @@ import ExampleCode from "../../../../components/docs/ExampleCode.astro";
 ### Channel
 <Channel />
 
-The `listBox` channel only sends its value on double-click, so each trigger corresponds to a deliberate user selection.
+By default the `listBox` channel only sends its value on double-click. Set `singleClick` to `true` to send it on a single click instead.
 
 ### Id
 <Id />
@@ -50,6 +51,9 @@ The `listBox` channel only sends its value on double-click, so each trigger corr
 ### Populate
 <Populate />
 
+### SingleClick
+<SingleClick />
+
 ### Visible
 <Visible />
 
@@ -61,7 +65,7 @@ The `listBox` channel only sends its value on double-click, so each trigger corr
 
 ## Csound Usage
 
-The `listBox` returns the index of the double-clicked item along with a k-rate trigger value. The trigger value will be 1 for one k-cycle when an item is double-clicked, then return to 0. Read it with the `CabbageNumTrig` struct form of `cabbageGetValue`:
+The `listBox` returns the index of the selected item along with a k-rate trigger value. By default the value is sent on double-click; when `singleClick` is `true`, it is sent on every single click. The trigger value will be 1 for one k-cycle when an item is selected, then return to 0. Read it with the `CabbageNumTrig` struct form of `cabbageGetValue`:
 
 ```csound
 sel:CabbageNumTrig = cabbageGetValue("note")
@@ -70,7 +74,7 @@ if sel.trig == 1 then
 endif
 ```
 
-Set the channel `"type"` to `"string"` to receive the double-clicked item text instead of its index:
+Set the channel `"type"` to `"string"` to receive the selected item text instead of its index:
 
 ```json
 "channels": [{"id": "presetCombo", "range": {}, "type": "string"}]
