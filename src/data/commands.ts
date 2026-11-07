@@ -42,6 +42,12 @@ export const commands: Command[] = [
 		link: { label: 'ARA support', href: '/docs/using/ara-support/' },
 	},
 	{
+		title: 'Select Widget Kit',
+		description:
+			'Switches the themed widget set used by the instrument UI. A kit can override built-in widget types without changing the .csd, and missing types fall back to the built-ins.',
+		link: { label: 'Widget kits', href: '/docs/custom-ui/widget-kits/' },
+	},
+	{
 		title: 'Start Recording to WAV',
 		description: 'Records the instrument output to a WAV file while you play, in 16-bit or 32-bit float.',
 		link: { label: 'Commands and settings', href: '/docs/using/commands/' },

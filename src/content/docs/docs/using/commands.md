@@ -323,12 +323,22 @@ These commands are only available in the 'pro' build of Cabbage.
 - **Create New Custom Widget** (`cabbage.createNewCustomWidget`)
   - Creates a new custom widget class from a template in your custom widgets folder
 
+- **Select Widget Kit** (`cabbage.selectWidgetKit`)
+  - Choose the active widget kit. Lists the kits bundled with the extension and any kits in your custom widget folders. Choose **None** to use the built-in widgets
+  - Reload the instrument after changing; the Cabbage server is not restarted
+
 **Settings:**
 
 - **Custom Widget Folders** (`cabbage.customWidgetDirectories`)
   - Default: `[]`
   - Array of paths to custom widget folders. Each folder should contain a `cabbage` folder structure
   - **Recommended**: Use the "Select Custom Widget Folder" command which automatically sets up the required structure
+
+- **Widget Kit** (`cabbage.widgetKit`)
+  - Default: `""`
+  - The id of the active widget kit. Leave empty to use the built-in widgets
+  - Kit folders live in `<widgets>/kits/<kitId>/`; bundled kits include `punch-light`, `punch-dark`, `vintage-light` and `vintage-dark`
+  - Reload the instrument after changing
 
 ### Daisy Development
 

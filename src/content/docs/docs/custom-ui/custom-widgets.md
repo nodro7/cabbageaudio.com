@@ -5,9 +5,9 @@ description: "Creating custom widget classes for use with the Cabbage editor"
 
 Creating custom widget classes allows you to develop new controls while retaining the full editing tools provided by the Cabbage VS Code extension — including the property panel and drag-to-position editing. New widgets can be created using the command palette by selecting **Create New Custom Widget**.
 
-If a custom widget folder does not already exist, the extension will prompt for its creation and automatically copy the required files into it. These files are placed inside a `src` directory, which must not be moved.
+If a custom widget folder does not already exist, the extension will prompt for its creation and automatically copy the required files into it. These files are placed inside a `cabbage` directory, which must not be moved.
 
-Custom widget classes must be placed in the `widgets` subdirectory within `src`, i.e. `CustomWidgetFolder/src/widgets`. This ensures that the extension can locate and load them via the property panel. The file name also serves as the class name.
+Custom widget classes must be placed in the `widgets` subdirectory within `cabbage`, i.e. `CustomWidgetFolder/cabbage/widgets`. This ensures that the extension can locate and load them via the property panel. The file name also serves as the class name.
 
 :::note
 The custom widget folder must contain a top-level `cabbage` directory (i.e. the directory that contains the `widgets` subfolder). Maintaining this structure ensures that all paths are correctly resolved by Cabbage.
