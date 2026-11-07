@@ -56,6 +56,12 @@ export const commands: Command[] = [
 		description: 'Converts Cabbage 2 widget code to the JSON format that Cabbage 3 uses.',
 		link: { label: 'What is new in Cabbage 3', href: '/docs/whats-new/' },
 	},
+	{
+		title: 'Select Widget Kit',
+		description:
+			'Switches the themed widget set used by the instrument UI. A kit can override built-in widget types without changing the .csd, and missing types fall back to the built-ins.',
+		link: { label: 'Widget kits', href: '/docs/custom-ui/widget-kits/' },
+	},
 ];
 
 /** The command that is selected when the page loads. */
