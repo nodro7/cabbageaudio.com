@@ -31,8 +31,8 @@ and insert menu; reload the instrument to re-theme widgets that are already on
 screen.
 
 :::note
-The active kit is global. All open instruments use the same kit; there is not
-yet a per-project kit setting.
+The active kit is a VS Code setting, so every instrument open in that window
+uses the same kit. There is no per-instrument kit setting.
 :::
 
 ## What a kit changes

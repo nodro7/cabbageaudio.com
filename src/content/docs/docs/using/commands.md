@@ -423,8 +423,8 @@ The Cabbage source folder and the Cabbage binary folder are set automatically by
 - **Open a widget example** (`cabbage.openCabbageExample`)
   - Browse and open example .csd files demonstrating various widgets and techniques
 
+- **Import Cabbage 2 Instrument** (`cabbage.importCabbage2Instrument`)
+  - Converts a Cabbage 2 `.csd` or `.txt` file to a new Cabbage 3 file beside the source. See [Importing Cabbage 2 Instruments](/docs/using/importing-cabbage-2-instruments/).
+
 - **Opens the Csound 7 opcode reference page** (`cabbage.openOpcodeReference`)
   - Opens the Csound 7 opcode documentation in your browser
-
-- **Import Cabbage 2 Instrument** (`cabbage.importCabbage2Instrument`)
-  - Creates a Cabbage 3 copy of a Cabbage 2 instrument, with warnings for conversion work to review
