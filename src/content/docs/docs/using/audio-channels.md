@@ -2,7 +2,7 @@
 title: "Audio Channel Configuration"
 description: "How to set the channel layouts a plugin supports, with channelConfig or the Csound header, and how hosts choose between them."
 sidebar:
-  order: 4
+  order: 5
 ---
 
 Managing channel layouts presents a unique challenge because a developer cannot assume a host will honor the plugin's preferred configuration. For instance, a plugin designed for Stereo (2-in/2-out) might be forced onto a Mono or even a 5.1 track by the host. If the plugin attempts to access a channel index that the host hasn't allocated, it can result in a memory access violation or undefined behavior. Therefore, developers must implement defensive I/O logic (see below), verifying the actual channel count at runtime and gracefully handling any configuration the host provides. 

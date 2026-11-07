@@ -12,3 +12,5 @@ With Cabbage 3, you can:
 - Design custom user interfaces using simple JSON objects
 - Test your instruments in real-time without leaving VS Code
 - Export your creations as CLAP/VST3/AU plugins (support for ARA is also available)
+
+Coming from Cabbage 2? Start with [Importing Cabbage 2 Instruments](/docs/using/importing-cabbage-2-instruments/).

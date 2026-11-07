@@ -2,7 +2,7 @@
 title: "Working with Media Files"
 description: "How to use images and audio files in an instrument, and how to bundle them when you export."
 sidebar:
-  order: 6
+  order: 7
 ---
 
 Because Cabbage uses a web frontend, all image files used in a UI are sand-boxed. This means that for security reasons, Cabbage UIs can only access files within its own designated directory structure. The browser-based interface cannot directly access files from arbitrary locations on your computer - they must be properly included in your project's folder. 

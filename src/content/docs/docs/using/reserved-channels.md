@@ -2,7 +2,7 @@
 title: "Reserved Csound Channels"
 description: "The named Csound channels that Cabbage 3 sets at startup, such as the .csd path, system folders and window size."
 sidebar:
-  order: 7
+  order: 8
 ---
 
 Cabbage 3 will initialise a set of named Csound channels when it first loads. Some provide system-specific directory paths, while others convey environmental or system information, such as window dimensions or plugin status. These channels provide a cross-platform way to access common system directories or runtime data without hardcoding values. Cabbage 3 works with absolute file paths, so be sure to derive all file paths from known locations where appropriate.

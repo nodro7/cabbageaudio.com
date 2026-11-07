@@ -2,7 +2,7 @@
 title: "Commands & Settings"
 description: "Every Cabbage command in the VS Code command palette and every extension setting, grouped by task."
 sidebar:
-  order: 9
+  order: 10
 ---
 
 ## Command Palette Access
@@ -413,8 +413,8 @@ The Cabbage source folder and the Cabbage binary folder are set automatically by
 - **Open a widget example** (`cabbage.openCabbageExample`)
   - Browse and open example .csd files demonstrating various widgets and techniques
 
+- **Import Cabbage 2 Instrument** (`cabbage.importCabbage2Instrument`)
+  - Converts a Cabbage 2 `.csd` or `.txt` file to a new Cabbage 3 file beside the source. See [Importing Cabbage 2 Instruments](/docs/using/importing-cabbage-2-instruments/).
+
 - **Opens the Csound 7 opcode reference page** (`cabbage.openOpcodeReference`)
   - Opens the Csound 7 opcode documentation in your browser
-
-- **Update old-style Cabbage code to JSON** (`cabbage.updateToCabbage3`)
-  - Converts old Cabbage syntax to the new JSON format
