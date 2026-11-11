@@ -9,6 +9,8 @@ Once the Cabbage extension is enabled in Visual Studio Code, you can start devel
 
 To access Edit Mode, open the command palette (press Ctrl+Shift+P on Windows/Linux or Cmd+Shift+P on macOS) and select the `Cabbage: Edit Mode` command. In Edit Mode, you can adjust widget properties such as dimensions, colors, fonts, and more to customize your instrument's UI. Each modification updates the instrument's Cabbage JSON code in real-time, enabling quick iteration.
 
+To start an interface from an existing orchestra, run `Cabbage: Generate UI from Channels`. The command scans the file for channels referenced by `cabbageGetValue`, `cabbageSetValue`, `cabbageGet` and `cabbageSet`, and offers to create a widget for each channel that does not already have one. It infers a widget type from the channel name, or you can set the type and range with an inline hint such as `cabbageGetValue("cutoff") ; @widget type("rotarySlider") range(20, 20000, 800, 0.5)`. The new widgets are laid out below any existing ones.
+
 Once you're satisfied with your changes, save the .csd file ( you will need to focus the .csd text). Saving will close the UI editor and return you to Performance Mode, where you can test the instrument as it would appear in a live environment. 
 
 :::note
