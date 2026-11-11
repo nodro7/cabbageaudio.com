@@ -35,6 +35,11 @@ Assign custom shortcuts to any command by clicking the cogwheel icon next to the
 - **Edit Mode** (`cabbage.editMode`)
   - Toggles edit mode for the Cabbage interface. Right-click in edit-mode to add widgets or click existing widgets to edit their properties
 
+- **Generate UI from Channels** (`cabbage.generateUi`)
+  - Scans the current .csd for channels referenced by `cabbageGetValue`, `cabbageSetValue`, `cabbageGet` and `cabbageSet`, then offers to turn the ones without a widget into widgets. Every detected channel is selected by default, and the picker shows the widget type it will create
+  - Widget types are inferred from the channel name and the value type of the opcode result. Add an inline hint to choose the type and range yourself: `cabbageGetValue("cutoff") ; @widget type("rotarySlider") range(20, 20000, 800, 0.5)`. The range is `range(min, max, value[, increment[, skew]])`
+  - New widgets are laid out below the existing ones. If the file has no `<Cabbage>` section, a `form` is created, and dynamic channel names are skipped and listed in the Cabbage output channel
+
 - **Stop Csound** (`cabbage.stopCsound`)
   - Stops the running Csound process
 

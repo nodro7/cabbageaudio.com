@@ -62,6 +62,12 @@ export const commands: Command[] = [
 		description: 'Creates a Cabbage 3 copy of a Cabbage 2 instrument, with warnings for conversion work to review.',
 		link: { label: 'Importing Cabbage 2 Instruments', href: '/docs/using/importing-cabbage-2-instruments/' },
 	},
+	{
+		title: 'Generate UI from Channels',
+		description:
+			'Scans the orchestra for the channels your cabbageGetValue, cabbageSetValue, cabbageGet and cabbageSet calls use, then adds a widget for each one you pick, laid out below the existing interface.',
+		link: { label: 'Working with instruments', href: '/docs/using/working-with-instruments/' },
+	},
 ];
 
 /** The command that is selected when the page loads. */
