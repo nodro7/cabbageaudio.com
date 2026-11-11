@@ -34,7 +34,7 @@ export const videos: Video[] = [
 	{ id: 'lKrG_--aVGk', lesson: 9, title: 'Exporting instruments in Cabbage 3', shortTitle: 'Exporting instruments' },
 	{ id: 'ML7iq1PYhU8', lesson: 10, title: 'Custom UIs with Cabbage 3', shortTitle: 'Custom UIs' },
 	{ id: 'gLdVu9PsK_k', lesson: 11, title: 'Custom Widgets in Cabbage 3', shortTitle: 'Custom Widgets' },
-	{ id: 'wfOSomZLxEM', lesson: 12, title: 'Quick UIs in Cabbage 3', shortTitle: 'Quick generate UIs' },
+	{ id: 'wfOSomZLxEM', lesson: 12, title: 'Quickly generate UIs in Cabbage 3', shortTitle: 'Quickly generate UIs' },
 ];
 
 /** "Overview" or "Lesson 8". */
