@@ -11,7 +11,7 @@ backs that type.
 
 ## Bundled kits
 
-The extension ships with four kits:
+The extension ships with eight kits:
 
 | Kit | Id | Style |
 | --- | --- | --- |
@@ -19,6 +19,10 @@ The extension ships with four kits:
 | Punch Dark | `punch-dark` | Dark saturator-style controls |
 | Vintage Light | `vintage-light` | Skeuomorphic cream metal with amber accents |
 | Vintage Dark | `vintage-dark` | Skeuomorphic dark metal with glowing amber accents |
+| Illum Light | `illum-light` | Light luminous controls with ice-cyan accents |
+| Illum Dark | `illum-dark` | Dark luminous controls with ice-cyan accents |
+| June Light | `june-light` | Warm cream controls with burnt-orange accents |
+| June Dark | `june-dark` | Warm charcoal controls with orange accents |
 
 ## Selecting a kit
 
