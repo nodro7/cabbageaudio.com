@@ -68,7 +68,7 @@ When both are set, `svg.markup` takes precedence over `file`.
 What the `image` channel sends to Csound is determined by the channel `event` type:
 
 - `mouseMoveX` / `mouseMoveY` report the pointer position, normalised across the widget and scaled into the channel range. `mouseDragX` / `mouseDragY` report the same position, but only while a mouse button is held down.
-- `mousePressLeft` sends 1 when the image is pressed; `mouseReleaseLeft` sends 0 on release.
+- `mousePressLeft` sends 1 when the image is pressed and returns to 0 on release. A separate `mouseReleaseLeft` channel can report the release on a different channel id.
 - `valueChanged` sends a click pulse on press.
 
 The example below uses `mouseMoveX` / `mouseMoveY` position channels. Read each axis with the `CabbageNumTrig` struct form of `cabbageGetValue`:
