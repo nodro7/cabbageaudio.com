@@ -42,7 +42,7 @@ The form's channels report mouse activity across the whole instrument window whi
 ]
 ```
 
-`mouseMoveX` / `mouseMoveY` and `mouseDragX` / `mouseDragY` are normalised to the form bounds and scaled into each channel's range. `mouseInside` sends the channel maximum when the pointer enters the form and the minimum when it leaves. Because the form covers the whole window, its left-click (`valueChanged`) and mouse press channels report clicks anywhere in the interface, including clicks on other widgets.
+`mouseMoveX` / `mouseMoveY` and `mouseDragX` / `mouseDragY` are normalised to the form bounds and scaled into each channel's range. `mouseInside` sends the channel maximum when the pointer enters the form and the minimum when it leaves. Press channels send `1` on press and automatically return to `0` on release; a matching `mouseReleaseLeft` / `mouseReleaseRight` / `mouseReleaseMiddle` event is optional and only needed when the release should use a separate channel id. Because the form covers the whole window, its left-click (`valueChanged`) and mouse press channels report clicks anywhere in the interface, including clicks on other widgets.
 
 :::note
 When a `mousePressRight` channel is present, the form suppresses the browser context menu in performance mode so right-button presses can be used by the instrument.
