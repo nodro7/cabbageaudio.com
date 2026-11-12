@@ -21,8 +21,8 @@ The extension ships with eight kits:
 | Vintage Dark | `vintage-dark` | Skeuomorphic dark metal with glowing amber accents |
 | Illum Light | `illum-light` | Light luminous controls with ice-cyan accents |
 | Illum Dark | `illum-dark` | Dark luminous controls with ice-cyan accents |
-| June Light | `june-light` | Warm cream controls with burnt-orange accents |
-| June Dark | `june-dark` | Warm charcoal controls with orange accents |
+| June Light | `june-light` | Warm cream controls with Cabbage blue accents |
+| June Dark | `june-dark` | Warm charcoal controls with Cabbage green accents |
 
 ## Selecting a kit
 
