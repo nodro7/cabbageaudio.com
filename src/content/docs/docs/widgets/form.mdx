@@ -4,6 +4,7 @@ description: "Properties and a complete example for form, the main window of an 
 ---
 
 import Caption from "../../../../components/properties/caption.astro";
+import Channel from "../../../../components/properties/channel.astro";
 import Size from "../../../../components/properties/size.astro";
 import Id from "../../../../components/properties/id.astro";
 import StyleForm from "../../../../components/properties/form.style.astro";
@@ -24,6 +25,28 @@ Configuration properties like `pluginId`, `channelConfig`, `enableDevTools`, `lo
 
 ### Caption
 <Caption />
+
+### Channel
+
+<Channel />
+
+The form's channels report mouse activity across the whole instrument window while the instrument is running in performance mode. They are not sent while the interface is being edited. This makes the form the place to put global gestures such as scrubbing, mouse-following effects, or detecting when the pointer leaves the interface.
+
+```json
+"channels": [
+    { "id": "mouseX", "event": "mouseMoveX", "range": { "min": 0, "max": 1 } },
+    { "id": "mouseY", "event": "mouseMoveY", "range": { "min": 0, "max": 1 } },
+    { "id": "mouseLeft", "event": "mousePressLeft", "range": { "min": 0, "max": 1 } },
+    { "id": "mouseRight", "event": "mousePressRight", "range": { "min": 0, "max": 1 } },
+    { "id": "mouseInside", "event": "mouseInside", "range": { "min": 0, "max": 1 } }
+]
+```
+
+`mouseMoveX` / `mouseMoveY` and `mouseDragX` / `mouseDragY` are normalised to the form bounds and scaled into each channel's range. `mouseInside` sends the channel maximum when the pointer enters the form and the minimum when it leaves. Because the form covers the whole window, its left-click (`valueChanged`) and mouse press channels report clicks anywhere in the interface, including clicks on other widgets.
+
+:::note
+When a `mousePressRight` channel is present, the form suppresses the browser context menu in performance mode so right-button presses can be used by the instrument.
+:::
 
 ### Id
 <Id />
