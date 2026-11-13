@@ -264,7 +264,43 @@ Each and every Cabbage widget has a set of properties that define its behavior a
 
 Each widget also has a unique set of styling properties accessed through the `style` object. Here, users can control how their widgets look. In a break from Cabbage 2 convention, and to align with CSS/HTML naming schemes, all style properties use CSS-style spelling—for example, background color is listed as `backgroundColor`. A full list of supported styles, along with all other properties, can be found in each widget's manual entry.
 
+## Widget Hints
 
+The `Cabbage: Generate UI from Channels` command builds widgets from the channels referenced by `cabbageGetValue`, `cabbageSetValue`, `cabbageGet` and `cabbageSet` calls in your orchestra. Cabbage infers a widget type from each channel's name and value type, but you can override that inference with an inline `@widget` hint on the reference line:
+
+```csound
+freq:k = cabbageGetValue("cutoff") ; @widget type("rotarySlider") range(20, 20000, 800, 0.5)
+```
+
+The hint takes the following form:
+
+```text
+@widget type("widgetType") range(min, max, value[, increment[, skew]])
+```
+
+* `type("...")` is required and names the widget type to create, for example `"rotarySlider"`, `"horizontalSlider"` or `"checkBox"`.
+* `range(...)` is optional. It accepts `min`, `max` and `value`, followed by optional `increment` and `skew` values. The `value` is used as both the default and current value.
+* A comma between the two clauses is optional, so Cabbage 2-style `type("...") , range(...)` hints are also accepted.
+* Without a range, generated widgets use a `0` to `1` range. `button`, `checkBox`, `comboBox` and `listBox` widgets use an increment of `1`; all other widget types use `0.001`.
+
+```csound
+; Choose the type without changing the default range
+gain:k = cabbageGetValue("gain") ; @widget type("horizontalSlider")
+
+; Set the type and range
+cutoff:k = cabbageGetValue("cutoff") ; @widget type("rotarySlider") range(20, 20000, 800)
+
+; Include an increment and skew
+pan:k = cabbageGetValue("pan") ; @widget type("rotarySlider") range(-1, 1, 0, 0.01, 1)
+```
+
+:::note
+Widget hints are only read by the Generate UI command. They do not create widgets at compile time, and they are ignored once the widget exists in the `<Cabbage>` section.
+:::
+
+A hint applies to every channel found on its line. If a channel is referenced on several lines, the first hint found is used. Channel names must be static string literals; references that build a channel name dynamically, for example with `sprintf` or a variable, are skipped. If a hint is malformed, or if its range does not contain at least three numbers, the hint or range is ignored and Cabbage falls back to inference.
+
+See [Working with Instruments](/docs/using/working-with-instruments/) and [Commands](/docs/using/commands/) for more on generating an interface from an existing orchestra.
 
 ## Plugin Parameters and Automation
 
