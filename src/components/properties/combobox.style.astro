@@ -2,8 +2,8 @@
 import { Code } from '@astrojs/starlight/components';
 const description = `<ul>
 <li>Colors accept named CSS colors, hex (e.g., #RRGGBB or #RRGGBBAA), or rgb/rgba strings.</li>
-<li>Label typography is configured under <code>label.*</code>.</li>
-<li>The dropdown inherits border and fill colors from the style object.</li>
+<li>The selected text uses <code>style.fontFamily</code>, <code>style.fontSize</code>, <code>style.fontColor</code> and <code>style.textAlign</code>. The built-in comboBox does not display a <code>label.text</code>.</li>
+<li>The dropdown uses <code>style.backgroundColor</code>, <code>style.borderColor</code>, <code>style.borderWidth</code> and <code>style.borderRadius</code>; its item text uses the same font settings.</li>
 </ul>`;
 ---
 <div class="property-section">
@@ -12,7 +12,11 @@ const description = `<ul>
   "borderRadius": 2,
   "borderWidth": 1,
   "borderColor": "#222222",
-  "fill": "#0295cf"
+  "backgroundColor": "#0295cf",
+  "fontFamily": "Verdana",
+  "fontSize": "auto",
+  "fontColor": "#dddddd",
+  "textAlign": "center"
 },`} lang="json" />
   <Fragment set:html={description} />
 </div>

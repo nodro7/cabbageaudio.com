@@ -2,7 +2,7 @@
 import { Code } from '@astrojs/starlight/components';
 const description = `<ul>
 <li>Colors accept named CSS colors, hex (e.g., #RRGGBB or #RRGGBBAA), or rgb/rgba strings.</li>
-<li>Label typography is configured under <code>label.*</code>.</li>
+<li>Item text uses <code>style.fontFamily</code>, <code>style.fontSize</code>, <code>style.fontColor</code> and <code>style.textAlign</code>.</li>
 </ul>`;
 ---
 <div class="property-section">
@@ -11,7 +11,11 @@ const description = `<ul>
   "borderRadius": 2,
   "borderWidth": 1,
   "borderColor": "#dddddd",
-  "backgroundColor": "#0295cf"
+  "backgroundColor": "#0295cf",
+  "fontFamily": "Verdana",
+  "fontSize": "auto",
+  "fontColor": "#dddddd",
+  "textAlign": "center"
 },`} lang="json" />
   <Fragment set:html={description} />
 </div>
