@@ -101,6 +101,62 @@ import { CabbageUtils } from "cabbage/utils.js";
 
 The webview provides an import map for `cabbage` and `cabbage/*`.
 
+If you already have a built-in widget styled the way you want, you can capture
+its appearance as a preset instead of writing the class by hand — see the next
+section.
+
+## Adding a built-in widget to a kit
+
+In edit mode, right-click a built-in widget and choose **Add to Custom Kit…**.
+Cabbage then asks for:
+
+1. The custom widget folder to use, when more than one is configured.
+2. An existing kit, or a new kit to create.
+3. Which properties stay editable in the property panel. Unchecked properties
+   are locked; style properties start unchecked so the captured skin stays
+   stable.
+
+Cabbage writes `<widgets>/kits/<kitId>/<type>.js`. The generated file is a small
+subclass that reuses the built-in renderer and interaction code, so it keeps
+receiving upstream fixes:
+
+```js
+import { RotarySlider } from "cabbage/widgets/rotarySlider.js";
+
+export class ThemedRotarySlider extends RotarySlider {
+    static widgetType = "rotarySlider";
+    // ...
+}
+```
+
+The captured appearance lives in a `PRESET` object. Properties left unchecked
+are added to `hiddenProps`. A kit supports one override per built-in type, so
+adding the same type again replaces the existing file.
+
+After adding a widget, select the kit with **Cabbage: Select Widget Kit** (or
+the **Activate Kit** button shown after adding) and reload the instrument.
+Adding a widget to the kit that is already active also requires a reload.
+
+:::caution
+A preset only supplies **defaults**. When a widget is created, the widget JSON
+from the `.csd` is merged over the preset, so a per-widget `"style"` block in
+the instrument wins. If a rotary slider sets `style.track.fillColor`, for
+example, that colour is used instead of the preset's.
+
+This differs from the bundled kits, which are standalone renderers that read
+the kit palette in `style.color`; they ignore the built-in `style.thumb` and
+`style.track` keys. `hiddenProps` locks properties in the property panel only —
+it does not stop a `style` value in the `.csd` from overriding the preset at
+runtime. To let a kit style apply everywhere, remove the per-widget style
+overrides from the instrument, or keep them only where you want a deliberate
+exception.
+
+The preset captures the widget's current props, including unusual values. For
+example, a negative `thumb.borderWidth` produces invalid SVG stroke widths, and
+the affected track or thumb outline will not render. Check the source widget in
+the property panel before adding it to a kit.
+:::
+
 ## Colours
 
 Each bundled kit exposes a small colour palette through `style.color`:
