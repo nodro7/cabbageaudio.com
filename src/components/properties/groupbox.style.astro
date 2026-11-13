@@ -2,8 +2,8 @@
 import { Code } from '@astrojs/starlight/components';
 const description = `<ul>
 <li>Colors accept named CSS colors, hex (e.g., #RRGGBB or #RRGGBBAA), or rgb/rgba strings.</li>
-<li>Label typography is configured under <code>label.*</code>.</li>
-<li>When the group box contains children, its background becomes transparent so children are visible.</li>
+<li><code>label.text</code> sets the caption; its typography uses <code>style.fontFamily</code>, <code>style.fontSize</code> and <code>style.fontColor</code>.</li>
+<li>The background uses <code>style.backgroundColor</code>; the outline uses <code>style.borderColor</code>, <code>style.borderWidth</code> and <code>style.borderRadius</code>.</li>
 </ul>`;
 ---
 <div class="property-section">
@@ -12,7 +12,7 @@ const description = `<ul>
   "borderRadius": 4,
   "borderWidth": 1,
   "borderColor": "#dddddd",
-  "fill": "#888888"
+  "backgroundColor": "#888888"
 },`} lang="json" />
   <Fragment set:html={description} />
 </div>

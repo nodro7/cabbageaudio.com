@@ -1,8 +1,8 @@
 ---
 import { Code } from '@astrojs/starlight/components';
-const description = `<p>Sets the stacking order of the widget. Widgets with higher zIndex values will appear in front of widgets with lower values. Default is 1.</p>`;
+const description = `<p>Sets the stacking order of the widget. Widgets with higher zIndex values will appear in front of widgets with lower values. Default is 0.</p>`;
 ---
 <div class="property-section">
-  <Code code={`"zIndex": 1`} lang="json" />
+  <Code code={`"zIndex": 0`} lang="json" />
   <Fragment set:html={description} />
 </div>

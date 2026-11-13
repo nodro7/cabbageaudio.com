@@ -16,7 +16,7 @@ A Cabbage UI is defined by a root JSON object and must contain a `widgets` array
         {
             "type": "rotarySlider",
             "id": "mainGain",
-            "channels": [{ "id": "gain", "range": {"min": 0, "max": 1, "value": 0.5} }]
+            "channels": [{ "id": "gain", "range": {"min": 0, "max": 1, "defaultValue": 0.5} }]
         }
     ]
 }
@@ -107,7 +107,7 @@ A complete Cabbage JSON structure with top-level configuration:
             "id": "mainGain",
             "channels": [{
                 "id": "gain",
-                "range": {"min": 0, "max": 1, "value": 0.5}
+                "range": {"min": 0, "max": 1, "defaultValue": 0.5}
             }]
         }
     ],
@@ -139,7 +139,7 @@ Named channels are a central part of the Cabbage architecture: they carry values
         {
             "id": "Gain", 
             "range": {
-                "min": 0, "max": 1, "value": 0, "skew": 1, "increment": 0.01
+                "min": 0, "max": 1, "defaultValue": 0, "skew": 1, "increment": 0.01
             }
         }
     ]
@@ -212,7 +212,7 @@ If no top-level `id` is set, the `channels[0].id` channel can be used, but the r
 
 Using well-named top-level `id`s to manage a widget’s visual state offers many benefits, not least when it comes to debugging complex instruments. 
 
-JSON doesn't support comments. If you wish to add comments to your JSON, use a `"//" : "This is a comment....."` property. The extension will highlight this line to make it stands out from the rest of the JSON code. 
+Cabbage accepts JSONC-style comments: use `//` for a single-line comment or `/* ... */` for a block comment. Trailing commas are not supported. Comments are highlighted in the editor.
 
 :::caution
 A widget's range is fixed and cannot be changed at run-time. However, there are ways to make it appear as though the range has changed. Please ask on the forum for tips and tricks on making this work.
@@ -257,10 +257,10 @@ Each and every Cabbage widget has a set of properties that define its behavior a
 **Z-Index**
 
 ```json
-"zIndex": 1
+"zIndex": 0
 ```
 
-* Sets the stacking order of the widget. Widgets with higher `zIndex` values appear in front of widgets with lower values. The default is `1`.
+* Sets the stacking order of the widget. Widgets with higher `zIndex` values appear in front of widgets with lower values. The default is `0`.
 
 Each widget also has a unique set of styling properties accessed through the `style` object. Here, users can control how their widgets look. In a break from Cabbage 2 convention, and to align with CSS/HTML naming schemes, all style properties use CSS-style spelling—for example, background color is listed as `backgroundColor`. A full list of supported styles, along with all other properties, can be found in each widget's manual entry.
 
