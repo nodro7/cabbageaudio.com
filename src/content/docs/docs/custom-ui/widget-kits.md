@@ -34,10 +34,28 @@ Changing the kit does not restart `CabbageApp`. It updates the widget registry
 and insert menu; reload the instrument to re-theme widgets that are already on
 screen.
 
-:::note
-The active kit is a VS Code setting, so every instrument open in that window
-uses the same kit. There is no per-instrument kit setting.
-:::
+## Per-instrument kit
+
+`cabbage.widgetKit` is the default for every instrument in the window. A single
+instrument can pin its own kit by adding a top-level `"kit"` property to its
+`<Cabbage>` JSON:
+
+```json
+<Cabbage>{
+    "kit": "punch-dark",
+    "widgets": [
+        { "type": "form", "size": { "width": 600, "height": 300 } },
+        { "type": "rotarySlider", "id": "mainGain" }
+    ]
+}
+</Cabbage>
+```
+
+`"kit"` takes a kit id (for example `punch-dark`) and overrides whatever kit is
+currently selected, so different instruments open in the same window can each
+use their own kit. Remove the property to fall back to `cabbage.widgetKit`, or
+to the built-in widgets when that setting is empty. Top-level properties are
+described in [Cabbage JSON](/docs/widgets/overview/#cabbage-json).
 
 ## What a kit changes
 
@@ -172,7 +190,9 @@ override any of them; unchanged values are omitted when the `.csd` is saved.
 
 ## Exporting
 
-When a plugin is exported with a kit active, the kit's widget classes are copied
-into the plugin and wired in with small re-export shims. The exported plugin
-does not look up `cabbage.widgetKit` at runtime — the active kit is baked in at
-export time, so export again after changing kits.
+When a plugin is exported, the effective kit is baked in at export time: the
+kit's widget classes are copied into the plugin and wired in with small
+re-export shims. A top-level `"kit"` property in the instrument takes precedence
+over the global `cabbage.widgetKit` setting, so an instrument can pin the kit it
+is exported with. The exported plugin does not look up any kit at runtime, so
+export again after changing the `"kit"` property or the global setting.

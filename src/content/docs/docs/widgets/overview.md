@@ -86,6 +86,14 @@ Configures file-based logging for debugging (plugin mode only):
 - `file`: Path to the log file (relative to the .csd file location, or absolute)
 - `replace`: If `true`, overwrites the existing log file on plugin initialization; if `false`, appends to it
 
+### Widget Kit
+
+```json
+"kit": "punch-dark"
+```
+
+Selects the [widget kit](/docs/custom-ui/widget-kits/) used by this instrument, overriding the global `cabbage.widgetKit` setting. `kit` takes a kit id (for example `punch-dark`); when it is omitted, the instrument uses the globally selected kit, or the built-in widgets when no kit is selected.
+
 ### Complete Example
 
 A complete Cabbage JSON structure with top-level configuration:
@@ -93,6 +101,7 @@ A complete Cabbage JSON structure with top-level configuration:
 ```json
 <Cabbage>{
     "pluginId": "MyPl",
+    "kit": "punch-dark",
     "channelConfig": [
         { "name": "Stereo", "ins": "2", "outs": "2" }
     ],

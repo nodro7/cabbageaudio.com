@@ -344,6 +344,7 @@ These commands are only available in the 'pro' build of Cabbage.
   - The id of the active widget kit. Leave empty to use the built-in widgets
   - Kit folders live in `<widgets>/kits/<kitId>/`; bundled kits include `punch-light`, `punch-dark`, `vintage-light` and `vintage-dark`
   - Reload the instrument after changing
+  - A top-level `"kit"` property in an instrument's `<Cabbage>` JSON overrides this setting for that instrument; see [Widget Kits](/docs/custom-ui/widget-kits/#per-instrument-kit)
 
 ### Daisy Development
 
