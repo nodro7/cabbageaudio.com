@@ -1,11 +1,12 @@
 ---
 import { Code } from '@astrojs/starlight/components';
-const description = `<p>Ball defines the XY pad's draggable indicator. size sets the ball diameter, fill sets the color, and borderWidth controls the border thickness.</p>`;
+const description = `<p>Defines the xyPad's draggable indicator. <code>size</code> sets the ball diameter in pixels, <code>backgroundColor</code> sets its colour, and <code>borderWidth</code> controls the border thickness.</p>
+<p>The ball's centre is constrained to stay within the pad boundaries, so larger balls have a smaller usable movement range.</p>`;
 ---
 <div class="property-section">
   <Code code={`"ball": {
     "size": 20,
-    "fill": "#93d200",
+    "backgroundColor": "#93d200",
     "borderWidth": 2
 }`} lang="json" />
   <Fragment set:html={description} />

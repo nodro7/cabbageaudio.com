@@ -1,0 +1,8 @@
+---
+import { Code } from '@astrojs/starlight/components';
+const description = `<p>Controls how a button responds while it is being pressed. When <code>true</code> (the default) the button toggles and keeps its new state after release. When <code>false</code> the button is momentary: it is on while pressed and returns to off when released.</p>`;
+---
+<div class="property-section">
+  <Code code={`"latched": true`} lang="json" />
+  <Fragment set:html={description} />
+</div>

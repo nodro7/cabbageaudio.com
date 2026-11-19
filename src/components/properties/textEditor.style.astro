@@ -1,0 +1,20 @@
+---
+import { Code } from '@astrojs/starlight/components';
+const description = `<ul>
+<li>Colors accept named CSS colors, hex (e.g., #RRGGBB or #RRGGBBAA), or rgb/rgba strings.</li>
+<li><code>fontSize</code> is set in pixels. The special value <code>"auto"</code> scales the text from the widget height.</li>
+<li><code>textAlign</code> accepts <code>left</code>, <code>center</code>, or <code>right</code>.</li>
+</ul>`;
+---
+<div class="property-section">
+  <Code code={`"style": {
+  "opacity": 1,
+  "borderRadius": 4,
+  "backgroundColor": "#0295cf",
+  "fontFamily": "Verdana",
+  "fontSize": 14,
+  "fontColor": "#222222",
+  "textAlign": "left"
+},`} lang="json" />
+  <Fragment set:html={description} />
+</div>

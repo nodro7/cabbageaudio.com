@@ -3,6 +3,7 @@ import { Code } from '@astrojs/starlight/components';
 const description = `<ul>
 <li>Colors accept named CSS colors, hex (e.g., #RRGGBB or #RRGGBBAA), or rgb/rgba strings.</li>
 <li>The label text is configured under <code>label.text.on</code> and <code>label.text.off</code>.</li>
+<li><code>fontSize</code> accepts a pixel value or <code>"auto"</code>, which scales the text from the widget height.</li>
 <li>Border radius/width/color control the button outline.</li>
 </ul>`;
 ---
@@ -12,6 +13,10 @@ const description = `<ul>
   "borderRadius": 4,
   "borderWidth": 0,
   "borderColor": "#dddddd",
+  "fontFamily": "Verdana",
+  "fontSize": "auto",
+  "fontColor": "#dddddd",
+  "textAlign": "center",
 
   "on": {
     "backgroundColor": "#3d800a",

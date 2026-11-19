@@ -1,0 +1,8 @@
+---
+import { Code } from '@astrojs/starlight/components';
+const description = `<p>Sets the drag sensitivity of the <code>numberSlider</code>. Larger values make the value change faster for the same vertical drag distance; smaller values require more movement for the same change.</p>`;
+---
+<div class="property-section">
+  <Code code={`"sensitivity": 0.5`} lang="json" />
+  <Fragment set:html={description} />
+</div>

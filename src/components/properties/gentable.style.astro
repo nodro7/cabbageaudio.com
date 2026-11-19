@@ -1,9 +1,11 @@
 ---
 import { Code } from '@astrojs/starlight/components';
 const description = `<ul>
-<li>Background controls the area behind the waveform.</li>
+<li><code>backgroundColor</code> fills the area behind the waveform, while <code>fillColor</code> is the waveform colour when <code>fill</code> is <code>1</code>.</li>
+<li><code>strokeColor</code> and <code>strokeWidth</code> control the waveform outline when <code>fill</code> is <code>0</code>.</li>
+<li><code>logarithmic</code> displays the waveform using logarithmic scaling.</li>
+<li>Label typography is configured with <code>fontFamily</code>, <code>fontSize</code>, <code>fontColor</code> and <code>textAlign</code>.</li>
 <li>Colors accept named CSS colors, hex (e.g., #RRGGBB or #RRGGBBAA), or rgb/rgba strings.</li>
-<li>Label typography is configured under <code>label.*</code>.</li>
 </ul>`;
 ---
 <div class="property-section">
@@ -11,9 +13,16 @@ const description = `<ul>
   "opacity": 1,
   "borderRadius": 4,
   "borderWidth": 1,
-  "borderColor": "#dddddd",
-  "fill": "#93d200",
-  "background": "#00000022"
+  "borderColor": "#dddddd11",
+  "strokeColor": "#dddddd",
+  "strokeWidth": 1,
+  "fillColor": "#ffffff11",
+  "backgroundColor": "#00000000",
+  "fontFamily": "Verdana",
+  "fontSize": "auto",
+  "fontColor": "#dddddd",
+  "textAlign": "left",
+  "logarithmic": false
 },`} lang="json" />
   <Fragment set:html={description} />
 </div>

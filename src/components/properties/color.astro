@@ -1,12 +1,15 @@
 ---
 import { Code } from '@astrojs/starlight/components';
-const description = `<p>Color defines color schemes for widgets. Different widgets use different color properties: background and text for general use, highlighted for selection states, and keyboard-specific colors for piano keys.</p>`;
+const description = `<p>Configures the colours used by the <code>keyboard</code> widget. Colours accept any valid CSS colour string, or a hexadecimal value.</p>
+<ul>
+<li><code>whiteNote</code>: colour of the white keys.</li>
+<li><code>blackNote</code>: colour of the black keys.</li>
+<li><code>keydown</code>: colour of a key while it is held down.</li>
+<li><code>arrowBackground</code>: background colour of the octave arrow buttons.</li>
+</ul>`;
 ---
 <div class="property-section">
   <Code code={`"color": {
-    "background": "#ffffff",
-    "text": "#000000",
-    "highlighted": "#dddddd",
     "whiteNote": "#ffffff",
     "arrowBackground": "#0295cf",
     "keydown": "#93d200",

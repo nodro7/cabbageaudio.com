@@ -1,30 +1,21 @@
 ---
 import { Code } from '@astrojs/starlight/components';
-const description = `<p>Notes</p>
-<ul>
-<li>fill controls the background colour of the slider block.</li>
-<li>label.fontSize: &quot;auto&quot; scales with height; set a number (px) to fix it.</li>
-<li>label.textAlign: left | center | right.</li>
-<li>Colours accept CSS strings or RGB arrays [r,g,b].</li>
+const description = `<ul>
+<li><code>backgroundColor</code> fills the slider block.</li>
+<li><code>fontSize</code> accepts a pixel value or <code>"auto"</code>, which scales the value text from the widget height.</li>
+<li><code>textAlign</code> accepts <code>left</code>, <code>center</code>, or <code>right</code>.</li>
+<li>Colors accept named CSS colors, hex (e.g., #RRGGBB or #RRGGBBAA), or rgb/rgba strings.</li>
 </ul>`;
 ---
 <div class="property-section">
-  <Code code={`{
-  "style": {
-    "opacity": 1,
-    "borderRadius": 4,
-    "fill": "#0295cf"
-  },
-  "label": {
-    "text": "",
-    "offsetY": 0,
-    "fontFamily": "Verdana",
-    "fontSize": "auto",
-    "color": "#dddddd",
-    "textAlign": "center"
-  },
-  "valuePrefix": "",
-  "valuePostfix": ""
-}`} lang="json" />
+  <Code code={`"style": {
+  "opacity": 1,
+  "borderRadius": 4,
+  "backgroundColor": "#0295cf",
+  "fontFamily": "Verdana",
+  "fontSize": "auto",
+  "fontColor": "#dddddd",
+  "textAlign": "center"
+},`} lang="json" />
   <Fragment set:html={description} />
 </div>

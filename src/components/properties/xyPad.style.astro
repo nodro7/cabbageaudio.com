@@ -2,7 +2,7 @@
 import { Code } from '@astrojs/starlight/components';
 const description = `<ul>
 <li>Colors accept named CSS colors, hex (e.g., #RRGGBB or #RRGGBBAA), or rgb/rgba strings.</li>
-<li>Label typography is configured under <code>label.*</code>.</li>
+<li>The pad's axis labels use <code>fontFamily</code>, <code>fontSize</code>, <code>fontColor</code> and <code>textAlign</code>.</li>
 <li>Ball appearance is configured under the <code>ball.*</code> object on the widget.</li>
 </ul>`;
 ---
@@ -12,7 +12,11 @@ const description = `<ul>
   "borderRadius": 5,
   "borderWidth": 1,
   "borderColor": "#525252",
-  "backgroundColor": "#323232"
+  "backgroundColor": "#323232",
+  "fontFamily": "Verdana",
+  "fontSize": "auto",
+  "fontColor": "#dddddd",
+  "textAlign": "center"
 },`} lang="json" />
   <Fragment set:html={description} />
 </div>

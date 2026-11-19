@@ -1,0 +1,55 @@
+---
+title: "TextEditor"
+description: "Properties for textEditor, a simple in-interface text area."
+---
+
+import Active from "../../../../components/properties/active.astro";
+import Bounds from "../../../../components/properties/bounds.astro";
+import Id from "../../../../components/properties/id.astro";
+import Label from "../../../../components/properties/label.astro";
+import Persistence from "../../../../components/properties/persistence.astro";
+import Visible from "../../../../components/properties/visible.astro";
+import ZIndex from "../../../../components/properties/zindex.astro";
+import StyleTextEditor from "../../../../components/properties/textEditor.style.astro";
+
+`textEditor` creates a multi-line text area inside the instrument. The initial text is set with the `label.text` property.
+
+:::note
+The `textEditor` is a display and editing surface only. Its edited contents are not currently sent to Csound and it does not load a file automatically. Use `cabbageSet` on the label if you need to replace the text from Csound.
+:::
+
+## Properties
+
+### Active
+<Active />
+
+### Bounds
+<Bounds />
+
+### Id
+<Id />
+
+### Label
+<Label />
+
+### Persistence
+<Persistence />
+
+### Visible
+<Visible />
+
+### ZIndex
+<ZIndex />
+
+### Style
+<StyleTextEditor />
+
+## Example
+
+```json
+{
+    "type": "textEditor",
+    "bounds": { "left": 10, "top": 10, "width": 400, "height": 240 },
+    "label": { "text": "Initial text shown in the editor" }
+}
+```

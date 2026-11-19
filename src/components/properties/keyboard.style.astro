@@ -2,11 +2,16 @@
 import { Code } from '@astrojs/starlight/components';
 const description = `<ul>
 <li>Keyboard visuals (white/black keys, keydown color) are configured under the <code>color.*</code> object on the widget, not in <code>style</code>.</li>
+<li>The keyboard's note labels use <code>fontFamily</code>, <code>fontSize</code>, <code>fontColor</code> and <code>textAlign</code>.</li>
 </ul>`;
 ---
 <div class="property-section">
   <Code code={`"style": {
-  "opacity": 1
+  "opacity": 1,
+  "fontFamily": "Verdana",
+  "fontSize": "auto",
+  "fontColor": "#000000",
+  "textAlign": "center"
 },`} lang="json" />
   <Fragment set:html={description} />
 </div>
