@@ -1,6 +1,7 @@
 ---
 import { Code } from '@astrojs/starlight/components';
-const description = `<p>Defaults to <code>true</code>. Determines if a widget is automatable by a host DAW. Automatable widgets show up as plug-in parameters in the host. Non-automatable widgets can still communicate with Csound but are not accessible by the host. Note that hosts don't allow this parameter to change dynamically. If you change this setting, the plugin will need to be reloaded.</p>`;
+const description = `<p>Determines if a widget is automatable by a host DAW. Automatable widgets show up as plug-in parameters in the host. Non-automatable widgets can still communicate with Csound but are not accessible by the host. The default varies by widget: most interactive controls default to <code>true</code>, while display-only widgets such as <code>label</code>, <code>image</code> and <code>csoundOutput</code> default to <code>false</code>.</p>
+<p>Note that hosts don't allow this parameter to change dynamically. If you change this setting, the plugin will need to be reloaded.</p>`;
 ---
 <div class="property-section">
   <Code code={`"automatable": true`} lang="json" />

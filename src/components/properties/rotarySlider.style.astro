@@ -4,6 +4,7 @@ const description = `<ul>
 <li>&quot;auto&quot; values are calculated from the widget bounds to scale appropriately.</li>
 <li>Colors accept named CSS colors, hex (e.g., #RRGGBB or #RRGGBBAA), or rgb/rgba strings.</li>
 <li>The value text input appears when <code>valueText.visible</code> is true.</li>
+<li><code>shadow</code> draws a drop shadow around the knob. Set <code>shadow.color</code> to <code>"none"</code> or an empty string to disable it.</li>
 </ul>`;
 ---
 <div class="property-section">
@@ -34,6 +35,13 @@ const description = `<ul>
           "fontFamily": "Verdana",
           "fontSize": "auto",
           "fontColor": "#aaaaaa"
+        },
+
+        "shadow": {
+          "offsetX": 2,
+          "offsetY": 2,
+          "blur": 4,
+          "color": "rgba(0, 0, 0, 0.8)"
         }
       },`} lang="json" />
   <Fragment set:html={description} />

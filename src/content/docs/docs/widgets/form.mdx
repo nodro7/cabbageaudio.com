@@ -4,9 +4,12 @@ description: "Properties and a complete example for form, the main window of an 
 ---
 
 import Caption from "../../../../components/properties/caption.astro";
+import Automatable from "../../../../components/properties/automatable.astro";
 import Channel from "../../../../components/properties/channel.astro";
+import ScaleSource from "../../../../components/properties/scaleSource.astro";
 import Size from "../../../../components/properties/size.astro";
 import Id from "../../../../components/properties/id.astro";
+import ZIndex from "../../../../components/properties/zindex.astro";
 import StyleForm from "../../../../components/properties/form.style.astro";
 import WidgetExample from "../../../../components/docs/WidgetExample.astro";
 import ExampleCode from "../../../../components/docs/ExampleCode.astro";
@@ -25,6 +28,9 @@ Configuration properties like `pluginId`, `channelConfig`, `enableDevTools`, `lo
 
 ### Caption
 <Caption />
+
+### Automatable
+<Automatable />
 
 ### Channel
 
@@ -51,8 +57,14 @@ When a `mousePressRight` channel is present, the form suppresses the browser con
 ### Id
 <Id />
 
+### Scale Source
+<ScaleSource />
+
 ### Size
 <Size />
+
+### ZIndex
+<ZIndex />
 
 ### Style
 <StyleForm />

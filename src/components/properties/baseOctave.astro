@@ -1,0 +1,8 @@
+---
+import { Code } from '@astrojs/starlight/components';
+const description = `<p>Sets the base octave used when the computer keyboard is mapped to MIDI notes.</p>`;
+---
+<div class="property-section">
+  <Code code={`"baseOctave": 3`} lang="json" />
+  <Fragment set:html={description} />
+</div>

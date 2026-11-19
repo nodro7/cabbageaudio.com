@@ -3,9 +3,12 @@ title: "Csound Output"
 description: "Properties and a complete example for csoundOutput, a read-only console that displays Csound messages inside the instrument."
 ---
 
+import Active from "../../../../components/properties/active.astro";
+import Automatable from "../../../../components/properties/automatable.astro";
 import Bounds from "../../../../components/properties/bounds.astro";
 import Id from "../../../../components/properties/id.astro";
 import Label from "../../../../components/properties/label.astro";
+import Persistence from "../../../../components/properties/persistence.astro";
 import Visible from "../../../../components/properties/visible.astro";
 import ZIndex from "../../../../components/properties/zindex.astro";
 import StyleCsoundOutput from "../../../../components/properties/csoundOutput.style.astro";
@@ -23,6 +26,12 @@ Only the first `csoundOutput` widget in an interface receives the console text, 
 
 ## Properties
 
+### Active
+<Active />
+
+### Automatable
+<Automatable />
+
 ### Bounds
 <Bounds />
 
@@ -35,6 +44,9 @@ Only the first `csoundOutput` widget in an interface receives the console text, 
 :::note
 For `csoundOutput`, `label.text` sets the text shown when the widget is first created. Csound messages are appended below it.
 :::
+
+### Persistence
+<Persistence />
 
 ### Visible
 <Visible />

@@ -1,0 +1,8 @@
+---
+import { Code } from '@astrojs/starlight/components';
+const description = `<p>Selects how the form's pixel scaling is calculated. Use <code>"host"</code> (the default) to use the scale reported by the DAW host, or <code>"os"</code> to use the operating system DPI.</p>`;
+---
+<div class="property-section">
+  <Code code={`"scaleSource": "host"`} lang="json" />
+  <Fragment set:html={description} />
+</div>

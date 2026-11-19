@@ -2,15 +2,19 @@
 import { Code } from '@astrojs/starlight/components';
 const description = `<p>Configures the widget label displayed near the control.</p>
 <ul>
-<li>text: string — the label text.</li>
-<li>offsetY: number — vertical offset applied when the label is rendered outside the control (pixels).</li>
+<li><code>text</code>: the label text.</li>
+<li><code>offsetY</code>: vertical offset applied when the label is rendered outside the control (pixels).</li>
+<li><code>offsetX</code>: horizontal offset applied when the label is rendered outside the control (pixels).</li>
+<li><code>align</code>: label alignment for widgets that support it, such as <code>groupBox</code> and <code>rotarySlider</code>.</li>
 </ul>
-<p>Typography (font size, color, family, alignment) is set via <code>style.label.*</code>.</p>`;
+<p>For the slider widgets with a nested <code>style.label</code> object (<code>horizontalSlider</code>, <code>verticalSlider</code> and <code>rotarySlider</code>), typography is set under <code>style.label.*</code>. Other widgets use <code>style.fontFamily</code>, <code>style.fontSize</code>, <code>style.fontColor</code> and <code>style.textAlign</code>.</p>`;
 ---
 <div class="property-section">
   <Code code={`"label": {
   "text": "",
-  "offsetY": 0
+  "offsetY": 0,
+  "offsetX": 0,
+  "align": "center"
 }`} lang="json" />
   <Fragment set:html={description} />
 </div>

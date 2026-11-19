@@ -1,8 +1,8 @@
 ---
 import { Code } from '@astrojs/starlight/components';
-const description = `<p>This property will set whether a slider's popup value box will appear. It's enabled by default.</p>`;
+const description = `<p>Sets whether a slider's popup value box appears while dragging. This is a boolean value. The default varies by widget: <code>numberSlider</code> and <code>xyPad</code> enable it, while the horizontal, vertical, rotary and range sliders disable it.</p>`;
 ---
 <div class="property-section">
-  <Code code={`"popup": 1`} lang="json" />
+  <Code code={`"popup": true`} lang="json" />
   <Fragment set:html={description} />
 </div>

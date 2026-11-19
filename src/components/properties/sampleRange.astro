@@ -1,8 +1,8 @@
 ---
 import { Code } from '@astrojs/starlight/components';
-const description = `<p>This property sets the visible range of samples in a gentable. You can adjust these properties in real-time to enable zooming.</p>`;
+const description = `<p>Sets the visible sample range on the genTable's X axis. <code>start</code> and <code>end</code> are sample indices; an <code>end</code> of <code>-1</code> uses the last sample. These values can be changed in real-time to enable zooming.</p>`;
 ---
 <div class="property-section">
-  <Code code={`"range": {"start":0, "end":-1}`} lang="json" />
+  <Code code={`"range": {"x": {"start": 0, "end": -1}}`} lang="json" />
   <Fragment set:html={description} />
 </div>

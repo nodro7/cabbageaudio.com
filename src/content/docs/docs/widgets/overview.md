@@ -336,9 +336,11 @@ Each widget in Cabbage is documented with its properties and available channels.
 - [Image](/docs/widgets/image/)
 - [Keyboard](/docs/widgets/keyboard/)
 - [Label](/docs/widgets/label/)
+- [ListBox](/docs/widgets/listbox/)
 - [Number Slider](/docs/widgets/number-slider/)
 - [Option Button](/docs/widgets/option-button/)
 - [Rotary Slider](/docs/widgets/rotary-slider/)
+- [Text Editor](/docs/widgets/text-editor/)
 - [Vertical Slider](/docs/widgets/vertical-slider/)
 - [XY Pad](/docs/widgets/xy-pad/)
 
