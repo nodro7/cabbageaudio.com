@@ -27,10 +27,10 @@ Assign custom shortcuts to any command by clicking the cogwheel icon next to the
   - Saves the current .csd file and launches the instrument in a dedicated webview tab if it contains valid Cabbage JSON. Use this to compile manually when Compile On Save is disabled.
 
 - **Start Cabbage Server** (`cabbage.startServer`)
-  - Manually starts the Cabbage backend server (can also be started from the bottom right of the status panel)
+  - Manually starts the Cabbage backend server. You can also click **Start Cabbage** in the status bar.
 
 - **Stop Cabbage Server** (`cabbage.stopServer`)
-  - Stops the running Cabbage backend server
+  - Stops the running Cabbage backend server. You can also click **Stop Cabbage** in the status bar.
 
 - **Edit Mode** (`cabbage.editMode`)
   - Toggles edit mode for the Cabbage interface. Right-click in edit-mode to add widgets or click existing widgets to edit their properties

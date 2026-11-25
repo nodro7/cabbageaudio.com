@@ -18,7 +18,7 @@ export const install = {
 	installersSigned: false,
 
 	// The status bar item that starts the server.
-	statusBarLabel: 'Run Cabbage',
+	statusBarLabel: 'Start Cabbage',
 };
 
 export type System = {
