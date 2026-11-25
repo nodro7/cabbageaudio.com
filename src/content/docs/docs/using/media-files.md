@@ -71,7 +71,7 @@ When exporting your instrument as a plugin, use the top-level `package` object i
 }
 ```
 
-This copies `test.jpeg` to `media/test.jpeg` in the exported plugin's resource directory. If you omit `dest`, files are copied to the top level of the resources directory.
+This copies `test.jpeg` to `media/test.jpeg` in the exported plugin's resource directory. If you omit `dest`, the files are copied to the top level of the resources directory. This applies to folder sources too: `"include": [ {"src": "/Users/me/cabbage3-recipes/samples"} ]` copies the contents of the `samples` folder, preserving its internal folder structure, into the resources root, not as a `samples` subfolder.
 
 For more information, see the [Package Object](/docs/widgets/overview/#package-object) section of the widgets overview.
 

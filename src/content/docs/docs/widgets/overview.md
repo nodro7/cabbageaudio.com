@@ -48,7 +48,7 @@ The package object is used to manage the resources required by your instruments 
 "include": [ {"src": "/Users/me/cabbage3-recipes/samples/*.wav", "dest": "audioSamples"} ]
 ```
 
-This example copies all `.wav` files from the samples folder into an `audioSamples` folder in the exported plugin's resources directory. `dest` is always a directory path relative to the top level of the resources directory, never a file name, and included files keep their path relative to `src`. A single-file `src` therefore keeps its own file name: `{"src": "/Users/me/cabbage3-recipes/samples/test.jpeg", "dest": "media"}` produces `media/test.jpeg`. If you leave out `dest`, files are placed at the top level of the resources directory. `cabzOutputDir` is the output location for encrypted resources, available only in the Cabbage pro add-on.
+This example copies all `.wav` files from the samples folder into an `audioSamples` folder in the exported plugin's resources directory. `dest` is always a directory path relative to the top level of the resources directory, never a file name, and included files keep their path relative to `src`. A single-file `src` therefore keeps its own file name: `{"src": "/Users/me/cabbage3-recipes/samples/test.jpeg", "dest": "media"}` produces `media/test.jpeg`. If you leave out `dest`, files are placed at the top level of the resources directory. For a folder `src`, this means the folder's contents — not the folder itself — are copied to the resources root, preserving any internal folder structure. `cabzOutputDir` is the output location for encrypted resources, available only in the Cabbage pro add-on.
 
 ### Channel Configuration
 
