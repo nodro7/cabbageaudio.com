@@ -44,24 +44,36 @@ Audio files are read by Csound, hence they don't need any special considerations
 
 ## Packaging Media Files
 
-<!-- TODO(G): this section puts package and pluginId on the form widget. The widgets overview documents both as top-level properties. Confirm which is current. --> 
-
-When exporting your instrument as a plugin you can use the `package` object from the `form` widget to ensure all files are correctly copied over to the plugin resource directory. For example, the following `form` widget will copy all samples from `"/Users/me/cabbage3-recipes/samples/*.wav"` to a folder called `audioSamples` in the exported plugin's resource directory.
+When exporting your instrument as a plugin, use the top-level `package` object in the `<Cabbage>` section to copy extra files into the plugin's resource directory. The following example copies all `.wav` files from `/Users/me/cabbage3-recipes/samples/` into a folder called `audioSamples` at the top level of the exported plugin's resources:
 
 ```json
 {
-    "type": "form",
-    "caption": "Button Example",
-    "size": {"width": 380, "height": 300},
-    "guiMode": "queue",
     "pluginId": "def1",
     "package" : {
         "include": [ {"src": "/Users/me/cabbage3-recipes/samples/*.wav", "dest": "audioSamples"} ]
-    }
-},
+    },
+    "widgets": [
+        {
+            "type": "form",
+            "caption": "Button Example",
+            "size": {"width": 380, "height": 300},
+            "guiMode": "queue"
+        }
+    ]
+}
 ```
 
-For more information, see the [`form`](/docs/widgets/form/) widget.
+`dest` is always a directory relative to the resources root, not a file name. To copy a single file, give its full path in `src`; the file keeps its own name inside `dest`:
+
+```json
+"package": {
+    "include": [ {"src": "/Users/me/cabbage3-recipes/samples/test.jpeg", "dest": "media"} ]
+}
+```
+
+This copies `test.jpeg` to `media/test.jpeg` in the exported plugin's resource directory. If you omit `dest`, the files are copied to the top level of the resources directory. This applies to folder sources too: `"include": [ {"src": "/Users/me/cabbage3-recipes/samples"} ]` copies the contents of the `samples` folder, preserving its internal folder structure, into the resources root, not as a `samples` subfolder.
+
+For more information, see the [Package Object](/docs/widgets/overview/#package-object) section of the widgets overview.
 
 :::note
 Images can be included as base64 strings

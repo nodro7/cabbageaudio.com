@@ -60,7 +60,7 @@ In summary, the changes in Cabbage 3, particularly the shift to using JSON objec
 
 ## 6. Exporting instruments
 
-Although the process of exporting has remained largely unchanged, the sequence of events during export has undergone some updates. The most significant change is that all instrument resources are now exported to a set resource folder by default. All assets, including images, .csd files, and other related resources, will be placed in the following locations. Use the `package` object in your `form` widget to include any extra files your instrument needs:
+Although the process of exporting has remained largely unchanged, the sequence of events during export has undergone some updates. The most significant change is that all instrument resources are now exported to a set resource folder by default. All assets, including images, .csd files, and other related resources, will be placed in the following locations. Use the top-level `package` object in your `<Cabbage>` JSON to include any extra files your instrument needs:
 
 * macOS
     `/Library/CabbageAudio/PLUGIN_NAME/`
