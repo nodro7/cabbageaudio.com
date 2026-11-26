@@ -27,7 +27,17 @@ Something is wrong but I don't know what?
 <p>If something is not working as expected, you should enable the <code>verbose logging</code> setting in the extension settings. This will generate an extension log of messages in the Cabbage output console, which may help diagnose the issue. Additionally, you can launch the developer web tools panel via the command palette. The Cabbage UI in VS Code is a web panel—essentially an embedded web page. The developer console allows you to inspect elements and review the console log for errors. Both of these features should help you identify the problem. Once you’ve pinpointed the issue, you can post the logs and relevant information to the Cabbage user forum for further assistance.</p> 
 </details>
 
+
+<details>
+<summary>
+The editor panel is blank and VS Code shows "Could not register service worker"?
+</summary>
+<p>This is a VS Code webview host issue, not a Cabbage error. VS Code runs every extension panel in an embedded webview backed by an internal service worker, and occasionally Chromium fails to register it, leaving the panel blank. The extension named in the message is only the panel's owner, so the same error can appear for other extensions.</p>
+<p>Fix: run <code>Developer: Reload Window</code>. If it persists, fully quit every VS Code window and make sure no <code>Code.exe</code> (Windows) or <code>code</code> (macOS/Linux) process is left running, then reopen. If it still happens, quit VS Code, delete the <code>Service Worker</code> folder inside VS Code's user-data directory — <code>%APPDATA%\Code\</code> on Windows, <code>~/.config/Code/</code> on Linux, or <code>~/Library/Application Support/Code/</code> on macOS — and start VS Code again. See <a href="https://github.com/microsoft/vscode/issues/125993">microsoft/vscode#125993</a>.</p>
+</details>
+
 ## About Cabbage
+
 
 <details>
 <summary>
