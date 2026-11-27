@@ -63,6 +63,16 @@ Defines the preferred audio I/O bus configuration for the plugin. In this exampl
 
 See the [Audio Channel Configuration](/docs/using/audio-channels/) documentation for detailed information.
 
+### Mono Input
+
+```json
+"monoToStereo": "duplicate"
+```
+
+Controls how a standalone instrument fills input channels that the audio device does not provide — for example a stereo `ins` instrument running on a Mac with a single mono microphone. `"duplicate"` (the default) repeats the last available input channel, so a mono source feeds both left and right while the instrument keeps running as a stereo instrument; `"zero"` leaves the missing channels silent, keeping a mono source mono. This property only affects standalone mode — inside a DAW the host's channel layout is used as-is.
+
+See [Mono input on a stereo instrument](/docs/using/audio-channels/#mono-input-on-a-stereo-instrument) for details.
+
 ### Developer Tools
 
 ```json
@@ -105,6 +115,7 @@ A complete Cabbage JSON structure with top-level configuration:
     "channelConfig": [
         { "name": "Stereo", "ins": "2", "outs": "2" }
     ],
+    "monoToStereo": "duplicate",
     "widgets": [
         {
             "type": "form",
