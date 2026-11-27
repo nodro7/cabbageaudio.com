@@ -8,6 +8,7 @@ import Automatable from "../../../../components/properties/automatable.astro";
 import Bounds from "../../../../components/properties/bounds.astro";
 import Channel from "../../../../components/properties/channel.astro";
 import Id from "../../../../components/properties/id.astro";
+import Label from "../../../../components/properties/label.astro";
 import Persistence from "../../../../components/properties/persistence.astro";
 import Popup from "../../../../components/properties/popup.astro";
 import Sensitivity from "../../../../components/properties/sensitivity.astro";
@@ -41,6 +42,21 @@ import ExampleCode from "../../../../components/docs/ExampleCode.astro";
 
 ### Id
 <Id />
+
+### Label
+<Label />
+
+The label and value share the widget bounds: the label takes one half and the value the other. `align` controls which half the label occupies — `"auto"` (default) puts it above the value, matching Cabbage 2's `nslider`; `"top"`/`"above"`, `"bottom"`/`"below"`, `"left"` and `"right"` are also accepted. `offsetX`/`offsetY` nudge the label within its half.
+
+```json
+"label": {
+  "text": "Damping",
+  "align": "top",
+  "offsetY": 0
+}
+```
+
+Use `style.label.*` to style the label independently of the value text.
 
 ### Persistence
 <Persistence />

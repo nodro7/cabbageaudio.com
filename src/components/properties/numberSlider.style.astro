@@ -4,6 +4,7 @@ const description = `<ul>
 <li><code>backgroundColor</code> fills the slider block.</li>
 <li><code>fontSize</code> accepts a pixel value or <code>"auto"</code>, which scales the value text from the widget height.</li>
 <li><code>textAlign</code> accepts <code>left</code>, <code>center</code>, or <code>right</code>.</li>
+<li><code>label</code> styles the optional <code>label.text</code> caption separately from the value text: <code>fontFamily</code>, <code>fontSize</code> (pixel value or <code>"auto"</code>), <code>fontColor</code> and <code>textAlign</code>.</li>
 <li>Colors accept named CSS colors, hex (e.g., #RRGGBB or #RRGGBBAA), or rgb/rgba strings.</li>
 </ul>`;
 ---
@@ -15,7 +16,13 @@ const description = `<ul>
   "fontFamily": "Verdana",
   "fontSize": "auto",
   "fontColor": "#dddddd",
-  "textAlign": "center"
+  "textAlign": "center",
+  "label": {
+    "fontFamily": "Verdana",
+    "fontSize": "auto",
+    "fontColor": "#dddddd",
+    "textAlign": "center"
+  }
 },`} lang="json" />
   <Fragment set:html={description} />
 </div>
