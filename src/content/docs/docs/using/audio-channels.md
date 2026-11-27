@@ -12,7 +12,7 @@ Managing channel layouts presents a unique challenge because a developer cannot 
 
 In Cabbage 3, the number of input and output channels is controlled primarily by the `channelConfig` property within the JSON header. If no `channelConfig` is defined, Cabbage falls back to the `nchnls` / `nchnls_i` declarations in your Csound orchestra header, so a plain multichannel `.csd` without any `channelConfig` still works. If neither is defined, the plugin defaults to 1 input and 2 outputs.
 
-Cabbage dynamically overrides Csound’s internal channel settings to match the layout requested by the `channelConfig` or, more importantly, the host DAW. This ensures that Csound’s channel count always aligns perfectly with the DAW’s signal path or the hardware device when running in standalone mode. You can still query `nchnls` or `nchnls_i` within your orchestra code. They will always return the number of channels set by the host. 
+Cabbage dynamically overrides Csound’s internal channel settings to match the layout requested by the `channelConfig` or, more importantly, the host DAW. Inside a DAW, Csound’s channel count always matches the host’s signal path. In standalone mode (the VS Code extension) Cabbage keeps the instrument’s declared channel count and reconciles it with the audio device at runtime — when the device provides fewer channels, the engine up-mixes or drops them (see [Mono input on a stereo instrument](#mono-input-on-a-stereo-instrument)). You can still query `nchnls` or `nchnls_i` within your orchestra code. They return the counts the instrument is actually running with: the host’s inside a DAW, and the instrument’s declared counts in standalone. 
 
 `channelConfig` is an array of named configurations. Each entry describes one layout that the host can choose from:
 
@@ -88,3 +88,15 @@ else
     outs(aLeft, aRight)
 endif
 ```
+
+## Mono input on a stereo instrument
+
+In standalone mode the audio device may provide fewer channels than the instrument declares. The common case is a stereo instrument that reads `ins` on a Mac with a single mono microphone.
+
+Rather than forcing the instrument down to mono — which would change how it behaves once exported as a plugin — Cabbage keeps the instrument’s declared channel count and **up-mixes** the hardware input: the mono signal is repeated into the missing input channels, so `aL, aR ins` receives the same mono signal on both left and right. The instrument keeps running as a stereo instrument (stereo processing, width and reverb behave exactly as they would with a real stereo input), and there is no noise from uninitialised channels. If the device provides fewer *outputs* than the instrument declares, the extra output channels are simply discarded.
+
+:::note
+The up-mix is a standalone convenience. Inside a DAW the host’s channel layout is used as-is, so on a mono track the instrument still sees a single input channel. If the instrument must also work on mono tracks, check `nchnls_i` at runtime and handle the mono case explicitly (see the defensive example above).
+:::
+
+This is why it is better to author an instrument for the channel layout it is meant to use than to pre-collapse it to mono for a particular device: the standalone engine adapts the device to the instrument, while a plugin adapts to the host.
